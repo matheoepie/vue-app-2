@@ -8,7 +8,6 @@
 <script>
 // @ is an alias to /src
 import TestComponnent from '@/components/TestComponnent.vue'
-import TestComponnent from '../components/TestComponnent.vue'
 
 export default {
   name: 'Home',
