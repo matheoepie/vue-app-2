@@ -1,17 +1,17 @@
 <template>
   <div class="test">
     <h1>This is an Test page</h1>
-    <TestComponnent msg="TestOuia"/>
+    <Datas></Datas>
   </div>
 </template>
 <script>
 // @ is an alias to /src
-import TestComponnent from '@/components/TestComponnent.vue'
+import Datas from '@/components/getdata.vue'
 
 export default {
   name: 'test',
   components: {
-    TestComponnent
+    Datas
   }
 }
 </script>
