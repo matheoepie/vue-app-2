@@ -16,7 +16,7 @@ export default {
     mounted () {
     axios
       .get('https://data.loire-atlantique.fr/api/records/1.0/search/?dataset=224400028_lieux-numeriques-en-loire-atlantique')
-      .then(response => (this.info = response.data.records.fields.location))
+      .then(response => (this.info = response.data.records))
   }
 }
 </script>
