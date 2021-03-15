@@ -1,25 +1,33 @@
 <template>
-<div class="test">
-      <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="center" :zoom="zoom">
+
+  <div class="map">
+      <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="center" :zoom="zoom" :list="list">
           <MglAttributionControl />
       <MglNavigationControl position="top-right" />
       <MglGeolocateControl position="top-right" />
       <MglNavigationControl position="top-right" />
       <MglGeolocateControl position="top-right" />
       <MglScaleControl />
+      <MglMarker :coordinates="[	-1, 	50]" color="blue" />
+      
+
       </MglMap>
 </div>
+
+
 
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
-import { MglMap,      MglScaleControl, MglNavigationControl, MglGeolocateControl} from "vue-mapbox";
+import { MglMap,  MglMarker,    MglScaleControl, MglNavigationControl, MglGeolocateControl} from "vue-mapbox";
+import axios from 'axios';
 
 export default  {
     name:'Map',
   components: {
     MglMap,
+    MglMarker,
     MglNavigationControl,
     MglGeolocateControl,
     MglScaleControl
@@ -31,24 +39,35 @@ export default  {
       center: [	-1.553621, 	47.218371],
       zoom: 10.15,
       popupCoordinates: [	-1.553621, 	47.248371],
+      list: []
     
     };
+  },mounted () {
+    axios
+      .get('https://data.loire-atlantique.fr/api/records/1.0/search/?dataset=224400028_lieux-numeriques-en-loire-atlantique')
+      .then(response => (this.list = response.data.records))
   },
     created() {
-    
-    // We need to set mapbox-gl library here in order to use it in template
-    //this.addControl(new Mapbox.FullscreenControl());
-    //Mapbox.addControl(new Mapbox.FullscreenControl());
+
     this.mapbox = Mapbox;
     
-  },
+  }
   
   
 };
+
 </script>
 <style lang="postcss" scoped>
-test{
-position: absolute; top: 0; bottom: 0; width: 100%;    
+.map{
+  width: 100%;    
+}
+.marker {
+  
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 </style>
 

@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Epie</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/Test">Test</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/Info">Liste des établissements</router-link>
     </div>
     <router-view/>
   </div>
